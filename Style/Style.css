@@ -104,7 +104,9 @@ body{
 }
 
 .Area__Encriptacion {
-    display: none;
+    border: none;
+    background: transparent;
+    
 }
 
 .button__Copiar {

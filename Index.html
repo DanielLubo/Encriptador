@@ -16,7 +16,7 @@
         <div class="container">
             <div class="left-column">
                 <div class="item item1">
-                    <input class="Texto" type="text" placeholder="Ingrese el texto aqui">
+                    <input id="inputTexto" class="Texto" type="text" placeholder="Ingrese el texto aqui">
                 </div>
                 <div class="item item3">
                     <div class="advertencia-container">
@@ -24,13 +24,13 @@
                         <p class="Advertencia">Solo letras minusculas y sin acentos</p>
                     </div>
                     <div class="button-container">
-                        <button id="Encriptar" class="button__Encriptar">Encriptar</button>
-                        <button id="Desencriptar" class="button__Desencriptar">Desencriptar</button>
+                        <button onclick="encriptar()" id="Encriptar" class="button__Encriptar">Encriptar</button>
+                        <button onclick="desencriptar()"id="Desencriptar" class="button__Desencriptar">Desencriptar</button>
                     </div>
                 </div>
             </div>
             <div class="item item2">
-                <textarea class="Area__Encriptacion"></textarea>
+                <textarea id="resultado" class="Area__Encriptacion"></textarea>
                 <img class="Img__Muneco" src="Images/Muñeco.png">
                 <h2 class="SubTitulo">Ningun mensaje fue encontrado</h2>
                 <p class="Parrafo">Ingrese el texto que desees encriptar o desencriptar</p>
