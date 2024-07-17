@@ -1,68 +1,158 @@
-const e = "enter"; //e
-const i = "imes"; //i
-const a = "ai"; //a
-const o = "ober"; //o
-const u = "ufat"; //u
+let arrayTexto = [];
 
-function encriptar(){
-    let texto = document.getElementById("inputTexto").value;
-    let textEncriptado = "";
 
-    for(let i =  0; i < texto.length; i++){
-
-        let caracter  = texto[i];
-        if(caracter === "e"){
-            textEncriptado += e
-        } else if(caracter === "i"){
-            textEncriptado += i
-        } else if (caracter ===  "a"){
-            textEncriptado += a
-        } else if(caracter === "o"){
-            textEncriptado += o
-        } else if(caracter === "u"){
-            textEncriptado += u
-        } else{
-            textEncriptado += caracter;
-        }        
+//Funciones para la Encriptacion
+function encriptar() {
+    let texto = document.getElementById("inputTexto").value.trim();    
+    
+    if(texto === ""){
+        alert('Por favor, ingrese un texto antes de desencriptar.');
+        restaurarVistaOriginal();
+        return;
     }
 
-    document.getElementById("resultado").value = textEncriptado;
-    console.log(texto);
-    console.log(textEncriptado);
+    let arrayTexto = texto.split(" ");
+
+    document.getElementById("inputTexto").value = '';
+    console.log("Array original:", arrayTexto);
+
+    for (let i = 0; i < arrayTexto.length; i++) {
+        arrayTexto[i] = encriptarPalabra(arrayTexto[i]);
+    }
+
+    let resultado = arrayTexto.join(" ");
+    document.getElementById('resultadodos').innerHTML = resultado;
+    console.log("Array encriptado:", arrayTexto);
+
+    mostrarResultado(resultado);
+
 }
 
-function desencriptar() {
-    let textoNuevo = document.getElementById("inputTexto").value;
-    let textoDesencriptado = "";
-    const letraUno = "e";
-    const letraDos = "i";
-    const letraTres = "a";
-    const letraCuatro = "o";
-    const letraCinco = "u";
+function encriptarPalabra(palabra) {
+    const reglas = {
+        "e" : "enter",
+        "i" : "imes", 
+        "a" : "ai", 
+        "o" : "ober", 
+        "u" : "ufat",
+    };
 
-    for (let i = 0; i < textoNuevo.length; i++) {
-        let losCaractares = textoNuevo[i];
-        if (losCaractares === "e" && textoNuevo.substring(i, i + 5) === "enter") {
-            textoDesencriptado += letraUno;
-            i += 4; 
-        } else if (losCaractares === "i" && textoNuevo.substring(i, i + 4) === "imes") {
-            textoDesencriptado += letraDos;
-            i += 3;
-        } else if (losCaractares === "a" && textoNuevo.substring(i, i + 2) === "ai") {
-            textoDesencriptado += letraTres;
-            i += 1;
-        } else if (losCaractares === "o" && textoNuevo.substring(i, i + 4) === "ober") {
-            textoDesencriptado += letraCuatro;
-            i += 3;
-        } else if (losCaractares === "u" && textoNuevo.substring(i, i + 4 === "ufat")) {
-            textoDesencriptado += letraCinco;
-            i += 3; 
+    let palabraEncriptada = '';
+    for (let i = 0; i < palabra.length; i++) {
+        let letra = palabra[i];
+        if (reglas[letra]) {
+        palabraEncriptada += reglas[letra];
         } else {
-            textoDesencriptado += losCaractares;
+        palabraEncriptada += letra;
         }
     }
 
-    document.getElementById("resultado").value = textoDesencriptado;
-    console.log("QUE SO", textoNuevo);
-    console.log("DISTINTO", textoDesencriptado);
+    return palabraEncriptada;
+}
+
+
+
+//Funciones para la Desencriptacion
+function desencriptar(){
+    let nuevoTexto = document.getElementById("inputTexto").value.trim();
+
+    if (nuevoTexto === "") {
+        alert("Por favor, ingrese un texto antes de desencriptar.");
+        restaurarVistaOriginal();
+        return; 
+    }
+
+    let arrayTexto = nuevoTexto.split(" ");
+
+    document.getElementById("inputTexto").value = '';
+    console.log("Array original de texto encriptado:", arrayTexto);
+
+    for(let i = 0; i < arrayTexto.length; i++){
+        arrayTexto[i] = desencriptarPalabra(arrayTexto[i]);
+    }
+
+    let resultado = arrayTexto.join(" ");
+    document.getElementById('resultadodos').innerHTML = resultado;
+    console.log("Array Desencriptado:", arrayTexto);
+
+    mostrarResultado(resultado);
+}
+
+function desencriptarPalabra(nuevaPalabra){
+    const nuevaReglas = {
+        "enter" : "e",
+        "imes" : "i", 
+        "ai" : "a", 
+        "ober" : "o", 
+        "ufat" : "u",
+    };
+
+    let palabraDesencriptada = "";
+
+    let i = 0;
+    while(i < nuevaPalabra.length){
+        let caracter = nuevaPalabra[i];
+
+        let desencriptadoEncontrado = false;
+        for(let regla in nuevaReglas){
+            if(nuevaPalabra.substring(i, i + regla.length) === regla){
+                palabraDesencriptada += nuevaReglas[regla];
+                i += regla.length - 1;
+                desencriptadoEncontrado  = true;
+                break;
+            } 
+        }
+
+        if(!desencriptadoEncontrado){
+            palabraDesencriptada += caracter;
+        }
+
+        i++;
+    }
+    return palabraDesencriptada;
+}
+
+
+//Funciones para Mostrar el resultado tanto de Encriptacion como de Desencriptacion
+function mostrarResultado(resultado){
+    const resultadoElement = document.getElementById('resultadodos');
+    const imagenMuneco = document.getElementById('imagenMuneco');
+    const titulo = document.getElementById('tituloAd');
+    const parrafo = document.getElementById('parrafoAd');
+    const boton = document.getElementById('botonCopiar');
+
+    resultadoElement.textContent = resultado;
+
+    imagenMuneco.style.display = 'none';
+    titulo.style.display = 'none';
+    parrafo.style.display = 'none';
+
+    boton.style.display = 'block';    
+}
+
+function restaurarVistaOriginal() {
+    const resultadoElement = document.getElementById('resultadodos');
+    const imagenMuneco = document.getElementById('imagenMuneco');
+    const titulo = document.getElementById('tituloAd');
+    const parrafo = document.getElementById('parrafoAd');
+    const boton = document.getElementById('botonCopiar');
+
+    imagenMuneco.style.display = 'block';
+    titulo.style.display = 'block';
+    parrafo.style.display = 'block';
+
+    boton.style.display = 'none';    
+    resultadoElement.innerHTML = '';
+}
+
+
+function copiar(){
+    const resultadoTexto = document.getElementById('resultadodos');
+    navigator.clipboard.writeText(resultadoTexto.textContent)
+        .then(()=>{
+            alert('Texto copiado al porta papeles');
+        })
+        .catch(err =>{
+            console.error('Error al copiar el texto; ', err);
+        });
 }
