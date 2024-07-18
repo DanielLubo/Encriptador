@@ -14,7 +14,7 @@ Este es el primer desafio propuesto por parte del programa OracleONE, este proye
 
 ```json
 {
-  "gato" : "gaitober"
+  "gato" : "gaitober",
   "gaitober" : "gato"
 }
 ```
