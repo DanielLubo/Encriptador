@@ -79,7 +79,7 @@ body{
 }
 
 .Texto {
-    font-size: 32px;
+    font-size: 2rem;
     width: calc(100% - 40px);
     font-family: var(--fuente-tal);
     border: none;
@@ -110,7 +110,7 @@ body{
     padding: 15px;
     border: none;
     background-color: var(--color--terciario);
-    font-size: 20px;
+    font-size: 	1.3rem;
     line-height: 1.5;
     overflow-y: auto;
     box-sizing: border-box;
@@ -126,7 +126,7 @@ body{
     padding: 10px 0;
     margin-top: 15px;    
     border-radius: 15px;
-    font-size: 18px;
+    font-size: 1.1rem;
     height: 60px;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -142,14 +142,14 @@ body{
 
 .SubTitulo{
     width: 336px;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-family: var(--fuente-tal);
     text-align: center;
 }
 
 .Parrafo__Advertencia{
     width: 336px;
-    font-size: 16px;
+    font-size: 1rem;
     font-family: var(--fuente-tal);
     text-align: center
 }
@@ -169,7 +169,7 @@ body{
 
 .Advertencia {
     width: auto; 
-    font-size: 14px;
+    font-size: 	0.9rem;
     font-family: var(--fuente-tal);
     margin: 0;
 }
@@ -182,7 +182,7 @@ body{
 
 .button__Encriptar,
 .button__Desencriptar {
-    font-size: 18px;
+    font-size: 1.1rem;
     font-family: var(--fuente-tal);
     padding: 12px 0; 
     width: 328px; 
@@ -224,10 +224,79 @@ body{
     color: var(--color--secundario);
     text-align: center;
     font-family: var(--fuente-tal);
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 400;
     margin-top: auto;
 }
 
+@media (max-width: 600px) {
+    
+    .container {
+        flex-direction: column;
+        padding-top: 20px;
+        gap: 20px;
+        padding: 16px
+    }
+
+    .Img__Logo {
+        padding-top: 20px;
+        padding-left: 0;
+    }
+
+    .left-column {
+        gap: 20px;
+    }
+
+    .item1, .item2, .item3 {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    .Texto {
+        width: 100%;
+        left: 0;
+        font-size: 1.5rem;
+    }
+
+    .advertencia-container {
+        justify-content: center;
+    }
+
+    .button-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .button__Encriptar,
+    .button__Desencriptar {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .item2 {
+        height: auto;
+        padding: 20px;
+    }
+
+    .Img__Muneco {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .SubTitulo,
+    .Parrafo__Advertencia {
+        width: 100%;
+    }
+
+    .button__Copiar {
+        width: 100%;
+    }
+
+    .elfooter {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+}
 
 

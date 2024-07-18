@@ -11,6 +11,11 @@ function encriptar() {
         return;
     }
 
+    if(!validarTexto(texto)){
+        alert('Por favor, ingrese solo letras minúsculas sin acentos ni caracteres especiales.');
+        return;
+    }
+
     let arrayTexto = texto.split(" ");
 
     document.getElementById("inputTexto").value = '';
@@ -60,6 +65,11 @@ function desencriptar(){
         alert("Por favor, ingrese un texto antes de desencriptar.");
         restaurarVistaOriginal();
         return; 
+    }
+
+    if(!validarTexto(nuevoTexto)) {
+        alert('Por favor, ingrese solo letras minúsculas sin acentos ni caracteres especiales.');
+        return;
     }
 
     let arrayTexto = nuevoTexto.split(" ");
@@ -156,3 +166,20 @@ function copiar(){
             console.error('Error al copiar el texto; ', err);
         });
 }
+
+
+//Validaciones
+function validarTexto(texto){
+    const especiales = /^[a-z\s]*$/;
+    return especiales.test(texto);
+}
+
+
+document.getElementById('inputTexto').addEventListener("input", function(e){
+    const texto = e.target.value;
+    if(!validarTexto(texto)){
+        e.target.value = texto.replace(/[^a-z\s]/g, '');
+        alert('Por favor, ingrese solo letras minúsculas sin acentos ni caracteres especiales.')
+    }
+});
+
